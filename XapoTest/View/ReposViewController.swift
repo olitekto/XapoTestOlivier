@@ -58,8 +58,9 @@ class ReposViewController: UIViewController, UITableViewDelegate, UITableViewDat
         super.viewDidLoad()
         
        
-        
+        // load data and populate
         loadDataAndPopulate(defaultLanguage,defaultQuery,defaultSort)
+        // set title for filter button
         languageFilterBtnTitle.text = defaultLanguage
         
         //setting delegate for search field
@@ -106,11 +107,11 @@ class ReposViewController: UIViewController, UITableViewDelegate, UITableViewDat
         }
     }
     
+    // Open Filters VC
     @objc func openMoreFilters(){
-        // open player
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "MoreFiltersVC") as! MoreFiltersViewController
+        // RX listener to waiting for selected filers  and apply
         vc.selectedQuery.subscribe(onNext: { [weak self] settings in
-            print(settings, "rx called")
             if settings.count > 0 {
                 // update data
                 self!.defaultQuery = settings[0] as! String
@@ -122,12 +123,11 @@ class ReposViewController: UIViewController, UITableViewDelegate, UITableViewDat
         vc.modalPresentationStyle = .fullScreen
         self.present(vc, animated: true, completion: nil)
     }
-    
+    // Open lang Filters Vc
     @objc func openFilter(){
-        // open player
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "filtervc") as! FilterViewController
         vc.selectedLanguage.subscribe(onNext: { [weak self] lang in
-            print("rx called")
+            // RX listener to waiting for selected language and apply
             if !lang.isEmpty {
                 // update data
                 self!.defaultLanguage = lang
@@ -172,6 +172,7 @@ class ReposViewController: UIViewController, UITableViewDelegate, UITableViewDat
         return cell
     }
     
+    // row selection action - go to repo details VC
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "repoDetail") as! RepoDetailsViewController
         vc.repoViewModel = self.repoListViewModel.repos[indexPath.row]
@@ -179,6 +180,7 @@ class ReposViewController: UIViewController, UITableViewDelegate, UITableViewDat
         self.present(vc, animated: true, completion: nil)
     }
     
+    // Close search bar on button taped
     @IBAction func toggleSearchAction(_ sender: Any) {
         if  isSearchFieldOpened {
             isSearchFieldOpened = false
@@ -187,6 +189,7 @@ class ReposViewController: UIViewController, UITableViewDelegate, UITableViewDat
         }
     }
     
+    // Open search bar when touched
     @IBAction func searchTextFieldTouched(_ sender: Any) {
         if !isSearchFieldOpened {
             isSearchFieldOpened = true
@@ -195,7 +198,7 @@ class ReposViewController: UIViewController, UITableViewDelegate, UITableViewDat
         }
     }
     
-    
+    // perfom  expand animation on search field
     func toggle(_ width: CGFloat) {
         
         UIView.animate(withDuration: 0.3) {
@@ -211,7 +214,7 @@ class ReposViewController: UIViewController, UITableViewDelegate, UITableViewDat
 extension ReposViewController: UITextFieldDelegate {
     
     
-    
+    // function delegate  to detect text tapped in search field
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         let string1 = string
         let string2 = searchText.text
@@ -226,12 +229,14 @@ extension ReposViewController: UITextFieldDelegate {
         // check if field is empty
         var isFieldEmpty = true
         let textFieldRange = NSRange(location: 0, length: textField.text?.count ?? 0)
+        // check if search field is cleared
         if NSEqualRanges(range, textFieldRange) && string.count == 0 {
             isFieldEmpty = true
         } else {
             isFieldEmpty = false
         }
-        filterArray(searchString: finalString as NSString, isFieldEmpty: isFieldEmpty)// pass the search String in this method
+        // Filtering function with entered letters
+        filterArray(searchString: finalString as NSString, isFieldEmpty: isFieldEmpty)
         return true
     }
     
@@ -264,7 +269,7 @@ protocol RepoCellDelegate {
 // Custom class for repo cell
 class RepoCell: UITableViewCell, UICollectionViewDelegate, UICollectionViewDataSource, ContributorCellDelegate {
     
-    // func that call function delegate to pass contributor
+    // func that call function delegate delegatge VC and pass contributor VM
     func didColCellTapped(index: Int) {
         actionTblDelagate?.didTblCellTapped(contributorViewModel: contributorListViewModel.contributors[index])
     }
@@ -285,7 +290,8 @@ class RepoCell: UITableViewCell, UICollectionViewDelegate, UICollectionViewDataS
     
     override func awakeFromNib() {
         super.awakeFromNib()
-
+        
+        // delegate collection to  parent (tablev cell)
         self.collectionView.delegate = self
         self.collectionView.dataSource = self
         
@@ -295,10 +301,12 @@ class RepoCell: UITableViewCell, UICollectionViewDelegate, UICollectionViewDataS
         containerView.layer.cornerRadius = 10
     }
     
+    //number of contributors items
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return contributorListViewModel.contributors.count
     }
     
+    // assigning row
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "contributorCell", for: indexPath) as! ContributorCell
         cell.contributorAvatarImg.sd_setImage(with: URL(string: contributorListViewModel.contributors[indexPath.row].avatar_url), placeholderImage: UIImage(named: "avatar.png"))
@@ -306,10 +314,7 @@ class RepoCell: UITableViewCell, UICollectionViewDelegate, UICollectionViewDataS
         return cell
     }
     
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-//        return 2
-//    }
-    
+    // selection of contributor and delegate  cell who is going to delegate VC
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         let cell = collectionView.cellForItem(at: indexPath) as! ContributorCell

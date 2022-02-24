@@ -48,6 +48,7 @@ class FilterViewController: UIViewController,UITableViewDelegate, UITableViewDat
     //  action on row selection / tap
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let language = languages[indexPath.row]
+        //RXSwift send language selected
         selectedLanguageVariable.onNext(language)
         self.dismiss(animated: true, completion: nil)
     }

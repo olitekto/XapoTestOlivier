@@ -37,7 +37,7 @@ class MoreFiltersViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-
+    // switch action based on switch sender tag - On toggle of current switch, all other close
     @IBAction func switchAction(_ sender: UISwitch) {
         if sender.tag == 1  {
             if sender.isOn {
@@ -81,7 +81,7 @@ class MoreFiltersViewController: UIViewController {
         }
         
     }
-    
+    //  UI slider to set min amount of followers
     @IBAction func sliderAction(_ sender: UISlider) {
         
         //followers
@@ -97,7 +97,7 @@ class MoreFiltersViewController: UIViewController {
             
         }
         
-        // repodsitory size
+        // UI slider to set max repodsitory size
         if  sender.tag == 2  {
             let value = Int(sender.value * 1000)
             if value == 0 {
@@ -111,7 +111,7 @@ class MoreFiltersViewController: UIViewController {
         }
         
     }
-    
+    // Apply filter action by send data using RXswift
     @IBAction func applyAction(_ sender: Any) {
 
         selectedQueriesVariable.onNext([followers+repoSize,sort])

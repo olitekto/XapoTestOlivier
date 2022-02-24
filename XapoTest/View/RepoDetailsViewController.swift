@@ -38,10 +38,12 @@ class RepoDetailsViewController: UIViewController, UICollectionViewDelegate, UIC
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        // dispaying infos on UI
         configureUI(repoVM: repoViewModel)
+        //  instanciate VM
         contributorListViewModel = ContributorsListViewModel()
-        print(repoViewModel.full_name)
+        // load and populate contributors
         Webservice().loadContributors(full_name: repoViewModel.full_name) { contributor in
 
             self.contributorListViewModel.populateContributors(contributor)
@@ -76,7 +78,7 @@ class RepoDetailsViewController: UIViewController, UICollectionViewDelegate, UIC
         repoContributorsCountBox.layer.borderWidth = 1.0
         
         
-        //load data
+        //load user data & populate
         Webservice().loadUser(username:(repoVM.owner.login)!) { user in
             self.userViewModel = UserViewModel(user: user)
             DispatchQueue.main.async {
@@ -90,11 +92,13 @@ class RepoDetailsViewController: UIViewController, UICollectionViewDelegate, UIC
         }
     }
     
+    // number of contributor items
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         repoContributorsCountLabel.text = String(contributorListViewModel.contributors.count)
         return contributorListViewModel.contributors.count
     }
     
+    // assigning row
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "contributorCell2", for: indexPath) as! ContributorCell
         cell.contributorAvatarImg.sd_setImage(with: URL(string: contributorListViewModel.contributors[indexPath.row].avatar_url), placeholderImage: UIImage(named: "avatar.png"))
@@ -103,6 +107,7 @@ class RepoDetailsViewController: UIViewController, UICollectionViewDelegate, UIC
         return cell
     }
     
+    // open  popup contributor infos
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let contributorViewModel = contributorListViewModel.contributors[indexPath.row]
         // open modal and pass contributorViewModel
@@ -114,7 +119,8 @@ class RepoDetailsViewController: UIViewController, UICollectionViewDelegate, UIC
         controller.contributorViewModel = contributorViewModel
         self.present(controller, animated: true, completion: nil)
     }
-
+    
+    //dismiss vc action
     @IBAction func backAction(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }

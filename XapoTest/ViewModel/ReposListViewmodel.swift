@@ -11,7 +11,8 @@ import Foundation
 class ReposListViewModel {
     
     var repos:[RepoViewModel] = [RepoViewModel]()
-
+    
+    // filling repos  VM to listVM
     func populateRepos(_ repos :[Repo]) {
          self.repos = repos.map(RepoViewModel.init)
     }
@@ -26,6 +27,7 @@ class ReposListViewModel {
         filteredSearchTextArr = (searchTextArr as NSArray).filtered(using: predicate) as NSArray
         print(filteredSearchTextArr)
         var filteredRepos:[Repo] = []
+        // cross compare full name in Repo model and  full name in search array  previsously filled
         for i in 0 ..< repos.count {
             for y in 0 ..< filteredSearchTextArr.count {
                 if repos[i].full_name == filteredSearchTextArr[y] as? String{

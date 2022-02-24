@@ -19,6 +19,7 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        //initially hide UIs elements revealed by animation)
         hideItems()
         
     }
@@ -30,7 +31,7 @@ class ViewController: UIViewController {
         showAndAnimateItems(title: titleLabel, subtitle: subtitleLabel, bodyText: bodyTextLabel, logo: logoImg, button: enterBtn, xapoBtn: xapoBtn)
     }
     
-    
+    // Enter in app
     @IBAction func enterAction(_ sender: UIButton) {
         bounceAndModal(btn:sender,vc:self)
     }
@@ -44,6 +45,7 @@ class ViewController: UIViewController {
         self.xapoBtn.alpha  = 0.0
     }
     
+    //  open browser
     @IBAction func goToXapo(_ sender: Any) {
         
         if let url = URL(string: "https://www.xapo.com/") {
@@ -52,7 +54,7 @@ class ViewController: UIViewController {
     }
     
    
-    
+    // open Web view
     @IBAction func openWebVIew(_ sender: UIButton) {
         
         var url = ""

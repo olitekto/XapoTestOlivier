@@ -13,6 +13,7 @@ class Owner {
     var login:String!
     var avatar_url:String!
     
+    //  constructor
     init(dic:NSDictionary) {
         let login = dic["login"] as? String
         let avatar_url = dic["avatar_url"] as? String

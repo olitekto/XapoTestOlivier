@@ -12,6 +12,7 @@ class ContributorsListViewModel {
     
     var contributors:[ContributorViewModel] = [ContributorViewModel]()
     
+    //filling contributors VM's in ListVM
     func populateContributors(_ contributors :[Contributor]) {
         self.contributors = contributors.map(ContributorViewModel.init)
    }

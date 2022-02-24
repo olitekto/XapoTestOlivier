@@ -27,10 +27,11 @@ class ContributorModal: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //displaying infos
         configureUI(contributorViewModel!)
         
        
-        //load data
+        //load data -> user -> user view model
         Webservice().loadUser(username:(contributorViewModel?.login)!) { user in
             self.userViewModel = UserViewModel(user: user)
             //print(user.name)
@@ -56,6 +57,7 @@ class ContributorModal: UIViewController {
         self.dismiss(animated: true, completion: nil)
     }
     
+    // displaying data from View modal
     func configureUI(_ vm:ContributorViewModel){
         contributorAvatarImg.sd_setImage(with: URL(string: vm.avatar_url), placeholderImage: UIImage(named: "avatar.png"))
         contributorUsername.text = vm.login.capitalized
