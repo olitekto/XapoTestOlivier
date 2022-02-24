@@ -17,7 +17,7 @@ Xapo iOS Test
 <img src="https://user-images.githubusercontent.com/11678191/155526139-3c59ade4-700a-47e5-a840-7970d60d54d9.png" style=" width:500px ; height:1082px " /><br>
 
 <h3>Filters screen</h3> 
-<img src="https://user-images.githubusercontent.com/11678191/155526301-07a6c489-e5e9-4c42-9415-274605eb39b4.png" style=" width:500px ; height:1082px " /><br>
+<img src="https://user-images.githubusercontent.com/11678191/155538657-0e2302b4-1715-4d94-9b8a-41f47ae00a23.png" style=" width:500px ; height:1082px " /><br>
 
 
 <h3>Language selection screen</h3>
