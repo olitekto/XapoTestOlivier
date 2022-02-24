@@ -50,7 +50,7 @@ class ReposViewController: UIViewController, UITableViewDelegate, UITableViewDat
     // Rx  Swift
     let disposeBag = DisposeBag()
     
-    var defaultLanguage = "Swift"
+    var defaultLanguage = "Scala"
     var defaultQuery  = ""
     var defaultSort = "&sort=stars"
     

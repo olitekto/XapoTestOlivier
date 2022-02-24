@@ -11,7 +11,7 @@ import Foundation
 
 typealias JSONdictionnary = [String:Any]
 
-private let token = "token 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"
+private let token = "token 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"
 private let rootUrl = "https://api.github.com"
 
 class Webservice {
