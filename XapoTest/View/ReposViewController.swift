@@ -50,7 +50,7 @@ class ReposViewController: UIViewController, UITableViewDelegate, UITableViewDat
     // Rx  Swift
     let disposeBag = DisposeBag()
     
-    var defaultLanguage = "Scala"
+    var defaultLanguage = "Swift"
     var defaultQuery  = ""
     var defaultSort = "&sort=stars"
     
@@ -95,12 +95,17 @@ class ReposViewController: UIViewController, UITableViewDelegate, UITableViewDat
             self.repos = repos
             self.repoListViewModel.populateRepos(repos)
             
-            // fill array for search purchpose
-            for i in 0 ..< self.repoListViewModel.repos.count {
-              //  if (!(searchTextArr.contains(self.repoListViewModel.repos[i].full_name))){
-                    self.searchTextArr.append(self.repoListViewModel.repos[i].full_name)
-             //   }
+            if  repoListViewModel.repos.count > 0 {
+                // fill array for search purchpose
+                for i in 0 ..< self.repoListViewModel.repos.count {
+                  //  if (!(searchTextArr.contains(self.repoListViewModel.repos[i].full_name))){
+                        self.searchTextArr.append(self.repoListViewModel.repos[i].full_name)
+                 //   }
+                    
+                }
                 
+            } else {
+                EmptyData(tableview: tableView, message: "No repo found")
             }
             self.tableView.reloadData()
             self.stopAnimating()
@@ -143,7 +148,6 @@ class ReposViewController: UIViewController, UITableViewDelegate, UITableViewDat
     // assigning number of rows
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.repoListViewModel.repos.count
-       // return self.filteredSearchTextArr.count
     }
     
     

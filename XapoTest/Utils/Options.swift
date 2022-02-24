@@ -65,3 +65,16 @@ func utcToLocal(dateStr: String) -> String? {
     let timeStamp = dateFormatter.string(from: date!)
     return timeStamp
 }
+
+func EmptyData(tableview:UITableView, message:String) {
+    DispatchQueue.main.async {
+        let rect = CGRect(x: 0, y: 0, width: tableview.bounds.size.width, height: tableview.bounds.size.height)
+        let noDataLabel: UILabel = UILabel(frame: rect)
+        noDataLabel.text = message
+        noDataLabel.font = noDataLabel.font.withSize(20)
+        noDataLabel.textColor = UIColor(red: 233.0/255.0, green: 233.0/255.0, blue: 233.0/255.0, alpha: 1.0)
+        noDataLabel.textAlignment = NSTextAlignment.center
+        tableview.backgroundView = noDataLabel
+        tableview.separatorStyle = .none
+    }
+}
