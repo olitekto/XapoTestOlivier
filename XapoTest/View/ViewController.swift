@@ -14,6 +14,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var bodyTextLabel: UILabel!
     @IBOutlet weak var enterBtn: UIButton!
     @IBOutlet weak var logoImg: UIImageView!
+    @IBOutlet weak var xapoBtn: UIButton!
     
 
     override func viewDidLoad() {
@@ -26,7 +27,7 @@ class ViewController: UIViewController {
         super.viewDidAppear(true)
         
         // screen elements animations
-        showAndAnimateItems(title: titleLabel, subtitle: subtitleLabel, bodyText: bodyTextLabel, logo: logoImg, button: enterBtn)
+        showAndAnimateItems(title: titleLabel, subtitle: subtitleLabel, bodyText: bodyTextLabel, logo: logoImg, button: enterBtn, xapoBtn: xapoBtn)
     }
     
     
@@ -40,6 +41,7 @@ class ViewController: UIViewController {
         self.bodyTextLabel.alpha = 0.0
         self.enterBtn.alpha = 0.0
         self.logoImg.alpha = 0.0
+        self.xapoBtn.alpha  = 0.0
     }
     
     @IBAction func goToXapo(_ sender: Any) {

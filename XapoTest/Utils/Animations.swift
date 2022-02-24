@@ -10,7 +10,7 @@ import UIKit
 
 
 
-func showAndAnimateItems(title:UILabel, subtitle:UILabel, bodyText:UILabel,logo:UIImageView,button:UIButton) {
+func showAndAnimateItems(title:UILabel, subtitle:UILabel, bodyText:UILabel,logo:UIImageView,button:UIButton,xapoBtn:UIButton) {
     UIView.animate(withDuration: 1.5) {
         title.alpha = 1.0
     } completion: {_ in
@@ -24,6 +24,7 @@ func showAndAnimateItems(title:UILabel, subtitle:UILabel, bodyText:UILabel,logo:
             } completion: { _ in
                 UIView.animate(withDuration: 0.3, delay: 0.4) {
                     button.alpha = 1.0
+                    xapoBtn.alpha = 1.0
                 }
             }
         }

@@ -154,6 +154,7 @@
                         <outlet property="logoImg" destination="M1W-zI-Be7" id="Fs2-Pe-Kgn"/>
                         <outlet property="subtitleLabel" destination="h1q-I8-u3w" id="c6R-9D-EvE"/>
                         <outlet property="titleLabel" destination="p9s-Mh-mkr" id="5jt-0v-G4K"/>
+                        <outlet property="xapoBtn" destination="tNs-iI-i71" id="rXV-YZ-A7O"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
