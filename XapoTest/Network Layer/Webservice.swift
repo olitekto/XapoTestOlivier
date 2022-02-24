@@ -11,7 +11,7 @@ import Foundation
 
 typealias JSONdictionnary = [String:Any]
 
-private let token = "token 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"
+private let token = "token "
 private let rootUrl = "https://api.github.com"
 
 class Webservice {
@@ -28,7 +28,7 @@ class Webservice {
         var request = URLRequest(url: url)
         print("-------->",url)
         request.setValue(token, forHTTPHeaderField: "Authorization")
-        URLSession.shared.dataTask(with: request) { (data: Data?, response: URLResponse?, error: Error?) in
+        URLSession.shared.dataTask(with: url) { (data: Data?, response: URLResponse?, error: Error?) in
             
             
             do {
@@ -55,7 +55,7 @@ class Webservice {
         var request = URLRequest(url: url)
         request.setValue(token, forHTTPHeaderField: "Authorization")
         
-        URLSession.shared.dataTask(with: request) { (data: Data?, response: URLResponse?, error: Error?) in
+        URLSession.shared.dataTask(with: url) { (data: Data?, response: URLResponse?, error: Error?) in
             
             
             do {
@@ -78,7 +78,7 @@ class Webservice {
         var request = URLRequest(url: url)
         request.setValue(token, forHTTPHeaderField: "Authorization")
         
-        URLSession.shared.dataTask(with: request) { (data: Data?, response: URLResponse?, error: Error?) in
+        URLSession.shared.dataTask(with: url) { (data: Data?, response: URLResponse?, error: Error?) in
             
             
             do {
