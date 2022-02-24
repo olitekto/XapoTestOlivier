@@ -24,6 +24,7 @@ class PrivacyPolicyViewController: UIViewController, WKUIDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        // open URL
         webView.load(URLRequest(url: URL(string: url)!))
     }
     
