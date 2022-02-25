@@ -6,12 +6,13 @@
 //
 
 import Foundation
-
+import AesEverywhere
 
 
 typealias JSONdictionnary = [String:Any]
 
-private let token = "token "
+private let pkey =  "U2FsdGVkX1/q4NoG1ka/RW2ZXv50a7P6XB8ByK7IJ4pTelD/Q/F0ADNTetHFqghn1UEAUqLydLjcwXb7zmLMCg=="
+private let skey  = "?hThXbR_?_3/te<j"
 private let rootUrl = "https://api.github.com"
 
 class Webservice {
@@ -20,15 +21,13 @@ class Webservice {
     func loadRepos(language:String, query:String, sort:String, completion:@escaping ([Repo]) ->  ())  {
         
         let urlString = rootUrl+"/search/repositories?q=language:\(language)\(query)\(sort)&order=desc"
-        
-        
         print(urlString)
-        
+        let token = try! AES256.decrypt(input: pkey, passphrase: skey)
         let url = URL(string: urlString)!
         var request = URLRequest(url: url)
         print("-------->",url)
         request.setValue(token, forHTTPHeaderField: "Authorization")
-        URLSession.shared.dataTask(with: url) { (data: Data?, response: URLResponse?, error: Error?) in
+        URLSession.shared.dataTask(with: request) { (data: Data?, response: URLResponse?, error: Error?) in
             
             
             do {
@@ -52,10 +51,11 @@ class Webservice {
         
         let url = URL(string: rootUrl+"/repos/\(full_name)/contributors")!
         print(url)
+        let token = try! AES256.decrypt(input: pkey, passphrase: skey)
         var request = URLRequest(url: url)
         request.setValue(token, forHTTPHeaderField: "Authorization")
         
-        URLSession.shared.dataTask(with: url) { (data: Data?, response: URLResponse?, error: Error?) in
+        URLSession.shared.dataTask(with: request) { (data: Data?, response: URLResponse?, error: Error?) in
             
             
             do {
@@ -76,9 +76,10 @@ class Webservice {
         
         let url = URL(string: rootUrl+"/users/\(username)")!
         var request = URLRequest(url: url)
+        let token = try! AES256.decrypt(input: pkey, passphrase: skey)
         request.setValue(token, forHTTPHeaderField: "Authorization")
         
-        URLSession.shared.dataTask(with: url) { (data: Data?, response: URLResponse?, error: Error?) in
+        URLSession.shared.dataTask(with: request) { (data: Data?, response: URLResponse?, error: Error?) in
             
             
             do {

@@ -3,11 +3,12 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		091279F527C794FF00D5BA0B /* PrivacyPolicyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 091279F427C794FF00D5BA0B /* PrivacyPolicyViewController.swift */; };
+		091279FB27C8ED8700D5BA0B /* AesEverywhere in Frameworks */ = {isa = PBXBuildFile; productRef = 091279FA27C8ED8700D5BA0B /* AesEverywhere */; };
 		0912A7C627C4863A00719E43 /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0912A7C527C4863A00719E43 /* FilterViewController.swift */; };
 		093752CC27C5172B005FDB9B /* NVActivityIndicatorAnimationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 093752A327C5172A005FDB9B /* NVActivityIndicatorAnimationDelegate.swift */; };
 		093752CD27C5172B005FDB9B /* NVActivityIndicatorShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 093752A427C5172A005FDB9B /* NVActivityIndicatorShape.swift */; };
@@ -182,6 +183,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				091279FB27C8ED8700D5BA0B /* AesEverywhere in Frameworks */,
 				A2A54ECE112D43924AA69D50 /* Pods_XapoTest.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -421,6 +423,9 @@
 			dependencies = (
 			);
 			name = XapoTest;
+			packageProductDependencies = (
+				091279FA27C8ED8700D5BA0B /* AesEverywhere */,
+			);
 			productName = XapoTest;
 			productReference = 09AA6FD427B80DE1007A26EB /* XapoTest.app */;
 			productType = "com.apple.product-type.application";
@@ -495,6 +500,9 @@
 				Base,
 			);
 			mainGroup = 09AA6FCB27B80DE1007A26EB;
+			packageReferences = (
+				091279F927C8ED8700D5BA0B /* XCRemoteSwiftPackageReference "aes-everywhere-swift" */,
+			);
 			productRefGroup = 09AA6FD527B80DE1007A26EB /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -1041,6 +1049,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		091279F927C8ED8700D5BA0B /* XCRemoteSwiftPackageReference "aes-everywhere-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/mervick/aes-everywhere-swift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.2.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		091279FA27C8ED8700D5BA0B /* AesEverywhere */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 091279F927C8ED8700D5BA0B /* XCRemoteSwiftPackageReference "aes-everywhere-swift" */;
+			productName = AesEverywhere;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		09AA6FE027B80DE1007A26EB /* XapoTest.xcdatamodeld */ = {
